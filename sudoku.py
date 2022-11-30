@@ -28,17 +28,15 @@ def draw_game():
 
 
 
-def sketch(value):
-    number_surf = user_font.render(value, 0, ADDED_COLOR)
+def sketch():
     for row in range(board.row_length):
         for col in range(board.row_length):
+            number_surf = user_font.render(str(board.board[row][col]), 0, ADDED_COLOR)
             number_rect = number_surf.get_rect(center= (CHIP_SIZE * col + CHIP_SIZE // 2, CHIP_SIZE * row + CHIP_SIZE // 2))
             screen.blit(number_surf, number_rect)
 screen.fill(BG_COLOR)
 draw_game()
-for i in range(0, board.row_length):
-    for j in range(0, board.row_length):
-        sketch(str(board.board[0][0]))
+sketch()
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
