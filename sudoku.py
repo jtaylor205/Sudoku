@@ -1,4 +1,4 @@
-from sudoku_generator import SudokuGenerator
+from sudoku_generator import *
 from constants import *
 import pygame
 
@@ -7,6 +7,11 @@ pygame.init()
 pygame.display.set_caption("Sudoko")
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+board = SudokuGenerator(9, 0)
+board.fill_values()
+board.remove_cells()
+user_board = SudokuGenerator(9, 0)
 
 user_font = pygame.font.Font(None, USERADD_FONT)
 def draw_game():
@@ -20,14 +25,20 @@ def draw_game():
             pygame.draw.line(screen, LINE_COLOR, ((j * i * SQUARE_SIZE)/3,0), ((j * i * SQUARE_SIZE)/3, WIDTH), 2)
         pygame.draw.line(screen, LINE_COLOR, (i * SQUARE_SIZE, 0), (i * SQUARE_SIZE, WIDTH), LINE_WIDTH)
 
-def sketch(value):
-    number_surf = user_font.render(str(value), 0, USERADD_COLOR)
-    number_rect = number_surf.get_rect(center= (300, 300))
-    screen.blit(number_surf, number_rect)
 
+
+
+def sketch(value):
+    number_surf = user_font.render(value, 0, ADDED_COLOR)
+    for row in range(board.row_length):
+        for col in range(board.row_length):
+            number_rect = number_surf.get_rect(center= (CHIP_SIZE * col + CHIP_SIZE // 2, CHIP_SIZE * row + CHIP_SIZE // 2))
+            screen.blit(number_surf, number_rect)
 screen.fill(BG_COLOR)
 draw_game()
-sketch(5)
+for i in range(0, board.row_length):
+    for j in range(0, board.row_length):
+        sketch(str(board.board[0][0]))
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
