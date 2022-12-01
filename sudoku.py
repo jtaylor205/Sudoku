@@ -8,10 +8,14 @@ pygame.display.set_caption("Sudoko")
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-board = SudokuGenerator(9, 0)
+board = SudokuGenerator(9, 10)
 board.fill_values()
+board.print_board()
+full_board = board.get_board()
 board.remove_cells()
-user_board = SudokuGenerator(9, 0)
+user_board = board.get_board()
+
+
 
 user_font = pygame.font.Font(None, USERADD_FONT)
 def draw_game():
@@ -31,7 +35,10 @@ def draw_game():
 def sketch():
     for row in range(board.row_length):
         for col in range(board.row_length):
-            number_surf = user_font.render(str(board.board[row][col]), 0, ADDED_COLOR)
+            if user_board[row][col] == 0:
+                number_surf = user_font.render("", 0, ADDED_COLOR)
+            else:
+                number_surf = user_font.render(str(user_board[row][col]), 0, ADDED_COLOR)
             number_rect = number_surf.get_rect(center= (CHIP_SIZE * col + CHIP_SIZE // 2, CHIP_SIZE * row + CHIP_SIZE // 2))
             screen.blit(number_surf, number_rect)
 screen.fill(BG_COLOR)
