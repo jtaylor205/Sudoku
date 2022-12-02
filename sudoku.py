@@ -1,6 +1,17 @@
 from sudoku_generator import *
 from constants import *
 import pygame
+from cell_and_board import Cell
+
+def init_cells():
+    list = []
+    num = 0
+    for i in range(0,9):
+        for index in range(0,9):
+            num += 1
+            locals()[f'cell_{num}'] = Cell(full_board[i][index], (i, index))
+            list.append(locals()[f'cell_{num}'])
+    return list
 
 pygame.init()
 
@@ -12,11 +23,53 @@ board = SudokuGenerator(9, 10)
 board.fill_values()
 board.print_board()
 full_board = board.get_board()
+cell_list = init_cells()
 board.remove_cells()
+
 user_board = board.get_board()
 
 user_font = pygame.font.Font(None, USERADD_FONT)
 
+
+def get_row_col(x, y):
+    list = [0, 66, 133, 199, 266, 333, 399, 466, 533, 600]
+    for i in range(0, 9):
+        if x in range(list[i], list[i + 1]):
+            col = i
+    for index in range(0, 9):
+        if y in range(list[index], list[index + 1]):
+            row = index
+    return row, col
+
+def get_cell(pos, cells):
+    for e in cells:
+        if pos == e.get_pos():
+            return e
+
+def compare_values(value, cell):
+    if value == cell.get_value():
+        return True
+    return False
+
+def get_pressed_num(key):
+    if key == pygame.K_1:
+        return 1
+    elif key == pygame.K_2:
+        return 2
+    elif key == pygame.K_3:
+        return 3
+    elif key == pygame.K_4:
+        return 4
+    elif key == pygame.K_5:
+        return 5
+    elif key == pygame.K_6:
+        return 6
+    elif key == pygame.K_7:
+        return 7
+    elif key == pygame.K_8:
+        return 8
+    elif key == pygame.K_9:
+        return 9
 
 def draw_game():
     # Draw defining borders
@@ -149,6 +202,7 @@ screen.fill(BG_COLOR)
 # initializes welcome
 welcome()
 game_start = False
+
 while True:
     MOUSE_POSITION = pygame.mouse.get_pos()  # I need to organize this better
     for event in pygame.event.get():  # Every time you click on a sudoku square, the options disappear. Think it has something to do with loop
@@ -200,6 +254,15 @@ while True:
                 sketch()
             x, y = event.pos
             print(x, y)
+        if event.type == pygame.KEYDOWN:
+            if game_start == True:
+                print(get_pressed_num(event.key))
+                print(get_row_col(x, y))
+                print(cell_list)
+                print(get_cell(get_row_col(x, y), cell_list).get_value())
+                print(compare_values(get_pressed_num(event.key), get_cell(get_row_col(x, y),cell_list)))
+
+
 
     pygame.display.update()
 
