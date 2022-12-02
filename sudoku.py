@@ -279,6 +279,14 @@ while True:
                 cur_col -= 1
             elif event.key == pygame.K_RIGHT:
                 cur_col += 1
+            if cur_col == 9:
+                cur_col = 0
+            elif cur_col == -1:
+                cur_col = 8
+            elif cur_row == 9:
+                cur_row = 0
+            elif cur_row == -1:
+                cur_row = 8
 
 
 
