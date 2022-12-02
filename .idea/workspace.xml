@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83c61e72-b612-4b48-90e0-aac15b2c1277" name="Changes" comment="j">
-      <change beforePath="$PROJECT_DIR$/.idea/Project4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project4.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="83c61e72-b612-4b48-90e0-aac15b2c1277" name="Changes" comment="arrow keys to move cells">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.py" afterDir="false" />
     </list>
@@ -140,7 +138,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670005106572</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="arrow keys to move cells">
+      <created>1670019045260</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1670019045260</updated>
+    </task>
+    <task id="LOCAL-00011" summary="arrow keys to move cells">
+      <created>1670019183205</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1670019183205</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +194,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="j" />
-    <option name="LAST_COMMIT_MESSAGE" value="j" />
+    <MESSAGE value="arrow keys to move cells" />
+    <option name="LAST_COMMIT_MESSAGE" value="arrow keys to move cells" />
   </component>
 </project>

@@ -209,7 +209,7 @@ screen.fill(BG_COLOR)
 # initializes welcome
 welcome()
 game_start = False
-
+input_numbers = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
 while True:
     MOUSE_POSITION = pygame.mouse.get_pos()  # I need to organize this better
     for event in pygame.event.get():  # Every time you click on a sudoku square, the options disappear. Think it has something to do with loop
@@ -270,23 +270,28 @@ while True:
             print(x, y)
         if event.type == pygame.KEYDOWN:
             if game_start == True:
-                print(compare_values(get_pressed_num(event.key), get_cell((cur_row, cur_col),cell_list)))
+                if event.key in input_numbers:
+                    cur_input_allowed = compare_values(get_pressed_num(event.key), get_cell((cur_row, cur_col),cell_list))
+                    print(cur_input_allowed)
             if event.key == pygame.K_UP:
                 cur_row -= 1
+                if cur_row == -1:
+                    cur_row = 8
             elif event.key == pygame.K_DOWN:
                 cur_row += 1
+                if cur_row == 9:
+                    cur_row = 0
             elif event.key == pygame.K_LEFT:
                 cur_col -= 1
+                if cur_col == -1:
+                    cur_col = 8
             elif event.key == pygame.K_RIGHT:
                 cur_col += 1
-            if cur_col == 9:
-                cur_col = 0
-            elif cur_col == -1:
-                cur_col = 8
-            elif cur_row == 9:
-                cur_row = 0
-            elif cur_row == -1:
-                cur_row = 8
+                if cur_col == 9:
+                    cur_col = 0
+            elif event.key == pygame.K_RETURN:
+                print(cur_input_allowed)
+
 
 
 
