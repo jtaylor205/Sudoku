@@ -256,10 +256,6 @@ while True:
             print(x, y)
         if event.type == pygame.KEYDOWN:
             if game_start == True:
-                print(get_pressed_num(event.key))
-                print(get_row_col(x, y))
-                print(cell_list)
-                print(get_cell(get_row_col(x, y), cell_list).get_value())
                 print(compare_values(get_pressed_num(event.key), get_cell(get_row_col(x, y),cell_list)))
 
 
