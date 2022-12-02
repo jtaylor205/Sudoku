@@ -71,6 +71,7 @@ def get_pressed_num(key):
     elif key == pygame.K_9:
         return 9
 
+
 def draw_game():
     # Draw defining borders
     for i in range(1, BOARD_ROWS):
@@ -264,11 +265,21 @@ while True:
                 screen.fill(BG_COLOR)
                 draw_game()
             x, y = event.pos
+            cur_row, cur_col = get_row_col(x, y)
+            print(cur_row, cur_col)
             print(x, y)
         if event.type == pygame.KEYDOWN:
             if game_start == True:
+                print(compare_values(get_pressed_num(event.key), get_cell((cur_row, cur_col),cell_list)))
+            if event.key == pygame.K_UP:
+                cur_row -= 1
+            elif event.key == pygame.K_DOWN:
+                cur_row += 1
+            elif event.key == pygame.K_LEFT:
+                cur_col -= 1
+            elif event.key == pygame.K_RIGHT:
+                cur_col += 1
 
-                print(compare_values(get_pressed_num(event.key), get_cell(get_row_col(x, y),cell_list)))
 
 
 
