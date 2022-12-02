@@ -19,7 +19,7 @@ pygame.display.set_caption("Sudoko")
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-board = SudokuGenerator(9, 10)
+board = SudokuGenerator(9, 0)
 board.fill_values()
 board.print_board()
 full_board = board.get_board()
@@ -82,6 +82,15 @@ def draw_game():
             pygame.draw.line(screen, LINE_COLOR, ((j * i * SQUARE_SIZE) / 3, 0), ((j * i * SQUARE_SIZE) / 3, WIDTH), 2)
         pygame.draw.line(screen, LINE_COLOR, (i * SQUARE_SIZE, 0), (i * SQUARE_SIZE, WIDTH), LINE_WIDTH)
 
+    for row in range(board.row_length):
+        for col in range(board.row_length):
+            if user_board[row][col] == 0:
+                sketch("", col, row, True)
+            else:
+                sketch(str(user_board[row][col]), col, row, False)
+
+
+
 
 class Button():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -89,7 +98,6 @@ class Button():
 
     def __init__(self, surface, fill_color, text_message, rectangle, og_color, hover_color):
         self.surface = surface
-
         self.fill_color = fill_color
         self.text_message = text_message
         self.rectangle = rectangle
@@ -185,16 +193,14 @@ def welcome():
     screen.blit(select_surf, select_rect)
 
 
-def sketch():
-    for row in range(board.row_length):
-        for col in range(board.row_length):
-            if user_board[row][col] == 0:
-                number_surf = user_font.render("", 0, ADDED_COLOR)
-            else:
-                number_surf = user_font.render(str(user_board[row][col]), 0, ADDED_COLOR)
-            number_rect = number_surf.get_rect(
-                center=(CHIP_SIZE * col + CHIP_SIZE // 2, CHIP_SIZE * row + CHIP_SIZE // 2))
-            screen.blit(number_surf, number_rect)
+def sketch(value, col, row, added):
+    if added == False:
+        number_surf = user_font.render(value, 0, ADDED_COLOR)
+    else:
+        number_surf = user_font.render(value, 0, USERADD_COLOR)
+    number_rect = number_surf.get_rect(
+    center=(CHIP_SIZE * col + CHIP_SIZE // 2, CHIP_SIZE * row + CHIP_SIZE // 2))
+    screen.blit(number_surf, number_rect)
 
 
 screen.fill(BG_COLOR)
@@ -226,36 +232,42 @@ while True:
             if game_start == False:
                 if EASY_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks easy
                     print("easy mode activated ")
+                    board.removed_cells = 10
+                    board.remove_cells()
                     game_start = True
 
                 elif MEDIUM_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks medium
                     print("medium mode activated ")
+                    board.removed_cells = 20
+                    board.remove_cells()
                     game_start = True
 
                 elif HARD_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks hard
                     print("hard mode activated ")
+                    board.removed_cells = 30
+                    board.remove_cells()
                     game_start = True
             else:
                 if RESET_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks reset
                     print("reset the game")
+
                 elif RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks restart
                     print("restart the game")
+                    board = full_board
                     game_start = False
                     welcome()
                     # takes back to menu screen
                 elif EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks exit
                     pygame.quit()
-
             if game_start == True:
                 # player has chosen a mode from menu
                 screen.fill(BG_COLOR)
-
                 draw_game()
-                sketch()
             x, y = event.pos
             print(x, y)
         if event.type == pygame.KEYDOWN:
             if game_start == True:
+
                 print(compare_values(get_pressed_num(event.key), get_cell(get_row_col(x, y),cell_list)))
 
 
