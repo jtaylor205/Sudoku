@@ -40,7 +40,7 @@ class Board:
         self.sudo.remove_cells()
         for row in range(self.width):
             for col in range(self.height):
-                new_cell = Cell(self.user_board[row][col], row, col, screen)
+                new_cell = Cell(self.final_board[row][col], row, col, screen)
                 new_cell.draw()
 
     def select(self, row, col):
@@ -51,3 +51,12 @@ class Board:
             return (x, y)
         else:
             return None
+
+    def is_full(self):
+        for row in range(self.width):
+            for col in range(self.height):
+                if self.final_board[row][col] == 0:
+                    return False
+                else:
+                    continue
+        return True
