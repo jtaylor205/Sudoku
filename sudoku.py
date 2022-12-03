@@ -10,6 +10,7 @@ pygame.init()
 pygame.display.set_caption("Sudoko")
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 board = None
+input_num = 0
 user_font = pygame.font.Font(None, USERADD_FONT)
 
 def get_pressed_num(key):
@@ -94,13 +95,11 @@ while True:
                 col = x // CHIP_SIZE
                 print(row, col)
         if event.type == pygame.KEYDOWN:
+
             if game_start == True:
                 if event.key in input_numbers and board.final_board[row][col] == 0:
                     if board.click(row, col) != None:
-                        board.final_board[row][col] = str(get_pressed_num(event.key))
-                        num = Cell(get_pressed_num(event.key), row, col, screen)
-                        num.draw()
-                        print(board.final_board[row][col])
+                        input_num = str(get_pressed_num(event.key))
                     else:
                         pass
             if event.key == pygame.K_UP:
@@ -121,7 +120,13 @@ while True:
                 if col == 9:
                     col = 0
             elif event.key == pygame.K_RETURN:
-                print(cur_input_allowed)
+                if board.final_board[row][col] == 0:
+                    num = Cell(input_num, row, col, screen)
+                    num.draw()
+                    board.final_board[row][col] = input_num
+                    print(board.final_board[row][col])
+                else:
+                    pass
 
     pygame.display.update()
 
