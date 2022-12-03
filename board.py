@@ -5,9 +5,7 @@ from cell import Cell
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 class Board:
-    sudo = None
-    user_board = None
-    edited_board = None
+    final_board = None
     def __init__(self, width, height, screen, difficulty):
         self.width = width
         self.height = height
@@ -40,8 +38,6 @@ class Board:
         self.final_board = self.sudo.get_board()
         self.sudo.print_board()
         self.sudo.remove_cells()
-        self.user_board = self.sudo.get_board()
-        self.edited_board = self.sudo.get_board()
         for row in range(self.width):
             for col in range(self.height):
                 new_cell = Cell(self.user_board[row][col], row, col, screen)
