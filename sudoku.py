@@ -63,23 +63,28 @@ while True:
                 if EASY_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks easy
                     print("easy mode activated ")
                     board = Board(9, 9, screen, "easy")
+                    current_difficulty = "easy"
                     board.draw()
                     game_start = True
 
                 elif MEDIUM_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks medium
                     print("medium mode activated ")
                     board = Board(9, 9, screen, "medium")
+                    current_difficulty = "medium"
                     board.draw()
                     game_start = True
 
                 elif HARD_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks hard
                     print("hard mode activated ")
                     board = Board(9, 9, screen, "hard")
+                    current_difficulty = "hard"
                     board.draw()
                     game_start = True
             else:
                 if RESET_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks reset
-                    print("reset the game")
+                    board = Board(9, 9, screen, current_difficulty)
+                    board.draw()
+                    
 
                 elif RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks restart
                     print("restart the game")
