@@ -130,6 +130,8 @@ while True:
                     num.draw()
                     board.final_board[row][col] = input_num
                     print(board.final_board[row][col])
+                    input_num = 0
+                    print(board.is_full())
                 else:
                     pass
 
