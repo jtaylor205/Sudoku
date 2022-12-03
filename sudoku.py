@@ -176,7 +176,6 @@ EXIT_BUTTON = Button(surface=pygame.Surface((exit_text.get_size()[0] + 12, exit_
 
 def welcome():
     welcome_message_font = pygame.font.Font(None, 82)
-
     # Big welcome message at top
     screen.fill(BG_COLOR)
     welcome_surface = welcome_message_font.render("Welcome to Sudoku", 0, LINE_COLOR)
@@ -184,7 +183,6 @@ def welcome():
         center=(WIDTH // 2, HEIGHT // 2 - 201))
     # initializes welcome
     screen.blit(welcome_surface, welcome_rectangle)
-
     select_message = f"Select Game Mode:"
     select_message_font = pygame.font.Font(None, 60)
     select_surf = select_message_font.render(select_message, 0, LINE_COLOR)
