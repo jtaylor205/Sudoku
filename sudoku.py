@@ -12,27 +12,6 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 board = None
 user_font = pygame.font.Font(None, USERADD_FONT)
 
-
-def get_row_col(x, y):
-    list = [0, 66, 133, 199, 266, 333, 399, 466, 533, 600]
-    for i in range(0, 9):
-        if x in range(list[i], list[i + 1]):
-            col = i
-    for index in range(0, 9):
-        if y in range(list[index], list[index + 1]):
-            row = index
-    return row, col
-
-def get_cell(pos, cells):
-    for e in cells:
-        if pos == e.get_pos():
-            return e
-
-def compare_values(value, cell):
-    if value == cell.get_value():
-        return True
-    return False
-
 def get_pressed_num(key):
     if key == pygame.K_1:
         return 1
@@ -52,12 +31,6 @@ def get_pressed_num(key):
         return 8
     elif key == pygame.K_9:
         return 9
-
-
-
-"""all the button stuff right here"""
-
-
 
 screen.fill(BG_COLOR)
 

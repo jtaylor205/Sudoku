@@ -15,9 +15,7 @@ class Button():
 
     def display(self):
         self.text = button_font.render(self.text_message, 0, self.og_color)
-
         self.surface.fill(self.fill_color)
-
         self.surface.blit(self.text, (10, 10))
         screen.blit(self.surface, self.rectangle)
 
