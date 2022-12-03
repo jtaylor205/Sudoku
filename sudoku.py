@@ -62,21 +62,18 @@ while True:
                 if EASY_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks easy
                     print("easy mode activated ")
                     board = Board(9, 9, screen, "easy")
-                    screen.fill(BG_COLOR)
                     board.draw()
                     game_start = True
 
                 elif MEDIUM_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks medium
                     print("medium mode activated ")
                     board = Board(9, 9, screen, "medium")
-                    screen.fill(BG_COLOR)
                     board.draw()
                     game_start = True
 
                 elif HARD_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks hard
                     print("hard mode activated ")
                     board = Board(9, 9, screen, "hard")
-                    screen.fill(BG_COLOR)
                     board.draw()
                     game_start = True
             else:
@@ -95,32 +92,34 @@ while True:
                 x, y = event.pos
                 row = y // CHIP_SIZE
                 col = x // CHIP_SIZE
-                cur_row, cur_col = get_row_col(x, y)
                 print(row, col)
         if event.type == pygame.KEYDOWN:
             if game_start == True:
-                if event.key in input_numbers:
-                    print(get_pressed_num(event.key))
-                    print(board.final_board[row][col])
-                    if str(get_pressed_num(event.key)) == board.final_board[row][col]:
-                        print("TRUE")
+                if event.key in input_numbers and board.final_board[row][col] == 0:
+                    if board.click(row, col) != None:
+                        board.final_board[row][col] = str(get_pressed_num(event.key))
+                        num = Cell(get_pressed_num(event.key), row, col, screen)
+                        num.draw()
+                        print(board.final_board[row][col])
+                    else:
+                        pass
             if event.key == pygame.K_UP:
                 row -= 1
-                if cur_row == -1:
+                if row == -1:
                     cur_row = 8
                 print(row)
             elif event.key == pygame.K_DOWN:
-                cur_row += 1
-                if cur_row == 9:
-                    cur_row = 0
+                row += 1
+                if row == 9:
+                    row = 0
             elif event.key == pygame.K_LEFT:
-                cur_col -= 1
-                if cur_col == -1:
-                    cur_col = 8
+                col -= 1
+                if col == -1:
+                    col = 8
             elif event.key == pygame.K_RIGHT:
-                cur_col += 1
-                if cur_col == 9:
-                    cur_col = 0
+                col += 1
+                if col == 9:
+                    col = 0
             elif event.key == pygame.K_RETURN:
                 print(cur_input_allowed)
 
