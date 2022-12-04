@@ -5,6 +5,14 @@ https://www.geeksforgeeks.org/program-sudoku-generator/
 
 """
 
+"""
+GITHUB LINK FOR REPOSITORY
+
+https://github.com/jtaylor205/Project4
+
+
+"""
+
 class SudokuGenerator:
     '''
 	create a sudoku board - initialize class variables and set up the 2D board
