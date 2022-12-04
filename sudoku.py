@@ -82,7 +82,6 @@ while True:
                     board.sketched_nums = []
                     board.draw()
 
-
                 elif RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks restart
                     print("restart the game")
                     game_start = False
@@ -95,7 +94,7 @@ while True:
                 x, y = event.pos
                 row = y // CHIP_SIZE
                 col = x // CHIP_SIZE
-                print(row, col)
+
         if event.type == pygame.KEYDOWN:
             if game_start == True:
                 if event.key in input_numbers and board.final_board[row][col] == 0: #Checks to see if space is available
@@ -110,7 +109,6 @@ while True:
                 row -= 1
                 if row == -1:
                     cur_row = 8
-                print(row)
             elif event.key == pygame.K_DOWN:
                 row += 1
                 if row == 9:

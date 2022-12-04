@@ -27,3 +27,4 @@ class Cell:
         number_rect = number_surf.get_rect(
             center=(CHIP_SIZE * self.col + CHIP_SIZE // 2, CHIP_SIZE * self.row + CHIP_SIZE // 2))
         self.screen.blit(number_surf, number_rect)
+
