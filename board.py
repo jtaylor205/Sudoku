@@ -6,8 +6,8 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 user_font = pygame.font.Font(None, USERADD_FONT)
 class Board:
-    full_board = None
-    final_board = None
+    full_board = None #Board completely filled
+    final_board = None #Board that is edited as the user plays the game
     def __init__(self, width, height, screen, difficulty): #Initialize and create the board
         self.width = width
         self.height = height
