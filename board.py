@@ -8,7 +8,7 @@ user_font = pygame.font.Font(None, USERADD_FONT)
 class Board:
     full_board = None
     final_board = None
-    def __init__(self, width, height, screen, difficulty):
+    def __init__(self, width, height, screen, difficulty): #Initialize and create the board
         self.width = width
         self.height = height
         self.screen = screen
@@ -31,6 +31,7 @@ class Board:
         self.final_board = self.sudo.get_board()
 
     def draw(self):
+        #Draw out the board lines and also draw each cell
         screen.fill(BG_COLOR)
         for i in range(1, BOARD_ROWS):
             for j in range(1, BOARD_ROWS * 2):
@@ -51,16 +52,15 @@ class Board:
                 new_cell = Cell(self.final_board[row][col], row, col, screen)
                 new_cell.draw()
 
-    def select(self, row, col):
-        return
-
     def click(self, x, y):
+        #Check if location is a box
         if x < self.width and y < self.height:
             return (x, y)
         else:
             return None
 
     def is_full(self):
+        #Check if user has filled out board
         for row in range(self.width):
             for col in range(self.height):
                 if self.final_board[row][col] == 0:
@@ -70,6 +70,7 @@ class Board:
         return True
 
     def check_board(self):
+        #Check if the board is a solved sudoku
         for row in range(self.width):
             for col in range(self.height):
                 if str(self.final_board[row][col]) == str(self.full_board[row][col]):
@@ -82,6 +83,7 @@ class Board:
         self.final_board[row][col] = 0
 
     def sketch(self, value, row, col):
+        #Sketch value into the board
         number_surf = user_font.render(str(value), 0, USERADD_COLOR)
         number_rect = number_surf.get_rect(
             center=(CHIP_SIZE * col + CHIP_SIZE // 2 - 15, CHIP_SIZE * row + CHIP_SIZE // 2 - 15))
