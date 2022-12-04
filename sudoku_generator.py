@@ -42,7 +42,10 @@ class SudokuGenerator:
 	Return: list[list]
     '''
     def get_board(self):
-        return self.board
+        list = []
+        for i in self.board:
+            list.append(i)
+        return list
 
     '''
 	Displays the board to the console
@@ -52,12 +55,16 @@ class SudokuGenerator:
 	Return: None
     '''
     def print_board(self):
+        list = []
         #print the board based on each index in each list
         for i in range(0,self.row_length):
+            part = []
             for j in range(0,self.row_length):
+                part.append(self.board[i][j])
                 print(self.board[i][j], end= "")
+            list.append(part)
             print()
-        pass
+        return list
 
     '''
 	Determines if num is contained in the specified row (horizontal) of the board

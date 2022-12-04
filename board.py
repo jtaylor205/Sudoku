@@ -4,13 +4,17 @@ from sudoku_generator import SudokuGenerator
 from cell import Cell
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+user_font = pygame.font.Font(None, USERADD_FONT)
 class Board:
+    full_board = None
     final_board = None
     def __init__(self, width, height, screen, difficulty):
         self.width = width
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
+        self.empty_cells = []
+        self.sketched_nums = []
         if self.difficulty == "easy":
             self.sudo = SudokuGenerator(9, 30)
             pass
@@ -20,6 +24,11 @@ class Board:
         elif self.difficulty == "hard":
             self.sudo = SudokuGenerator(9, 50)
             pass
+        self.sudo.fill_values()
+        self.sudo.get_board()
+        self.full_board = self.sudo.print_board()
+        self.sudo.remove_cells()
+        self.final_board = self.sudo.get_board()
 
     def draw(self):
         screen.fill(BG_COLOR)
@@ -34,12 +43,11 @@ class Board:
                                  2)
             pygame.draw.line(self.screen, LINE_COLOR, (i * SQUARE_SIZE, 0), (i * SQUARE_SIZE, WIDTH), LINE_WIDTH)
 
-        self.sudo.fill_values()
-        self.final_board = self.sudo.get_board()
-        self.sudo.print_board()
-        self.sudo.remove_cells()
         for row in range(self.width):
             for col in range(self.height):
+                if self.final_board[row][col] == 0:
+                    empty_cell = [row, col]
+                    self.empty_cells.append(empty_cell)
                 new_cell = Cell(self.final_board[row][col], row, col, screen)
                 new_cell.draw()
 
@@ -60,3 +68,21 @@ class Board:
                 else:
                     continue
         return True
+
+    def check_board(self):
+        for row in range(self.width):
+            for col in range(self.height):
+                if str(self.final_board[row][col]) == str(self.full_board[row][col]):
+                    continue
+                else:
+                    return False
+        return True
+
+    def clear(self, row, col):
+        self.final_board[row][col] = 0
+
+    def sketch(self, value, row, col):
+        number_surf = user_font.render(str(value), 0, USERADD_COLOR)
+        number_rect = number_surf.get_rect(
+            center=(CHIP_SIZE * col + CHIP_SIZE // 2 - 15, CHIP_SIZE * row + CHIP_SIZE // 2 - 15))
+        self.screen.blit(number_surf, number_rect)
