@@ -52,6 +52,7 @@ class Board:
                 new_cell = Cell(self.final_board[row][col], row, col, screen)
                 new_cell.draw()
 
+                
     def click(self, x, y):
         #Check if location is a box
         if x < self.width and y < self.height:
@@ -82,9 +83,22 @@ class Board:
     def clear(self, row, col):
         self.final_board[row][col] = 0
 
-    def sketch(self, value, row, col):
+    def sketch(self, value, row, col, color):
         #Sketch value into the board
-        number_surf = user_font.render(str(value), 0, USERADD_COLOR)
+
+        number_surf = user_font.render(str(value), 0, color)
         number_rect = number_surf.get_rect(
             center=(CHIP_SIZE * col + CHIP_SIZE // 2 - 15, CHIP_SIZE * row + CHIP_SIZE // 2 - 15))
         self.screen.blit(number_surf, number_rect)
+
+    def highlight_box(self, col, row):
+        self.row = row
+        self.col = col
+        
+        if row < 9:
+            red_square = pygame.draw.rect(screen, (255,0,0), ((col * 67) - 1.25, (row * 67) -0.1, 68, 66.5), 3)
+        else:
+            red_square = None
+        return red_square
+
+   

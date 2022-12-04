@@ -37,6 +37,10 @@ screen.fill(BG_COLOR)
 
 # initializes welcome
 welcome()
+''' roman'''
+press_return = False
+sketched_nums_before_return = []
+
 game_start = False
 input_numbers = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
 while True:
@@ -72,6 +76,7 @@ while True:
 
                 board.draw()
                 game_start = True
+                first_click = True # to make sure no cell is selected after clicking game mode
             else:
                 if RESET_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks reset
                     print("reset the game")
@@ -89,20 +94,84 @@ while True:
                     # takes back to menu screen
                 elif EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks exit
                     pygame.quit()
+
             if game_start == True:
+                    
                 # player has chosen a mode from menu
                 x, y = event.pos
                 row = y // CHIP_SIZE
                 col = x // CHIP_SIZE
+                ### highlights the box 
 
+                board.draw()
+
+                Button.check_if_hover(RESET_BUTTON)
+                Button.check_if_hover(RESTART_BUTTON)
+                Button.check_if_hover(EXIT_BUTTON)
+
+                if first_click == False:   
+                    board.highlight_box(col, row)
+                first_click = False 
+# ##################################
+                
+                if press_return == False:
+                
+                    current_sketched_nums = []
+
+                    for sketched_nums in board.sketched_nums:
+                        current_sketched_nums.append(sketched_nums)
+                    if current_sketched_nums != []:
+                        sketched_nums_before_return.append(current_sketched_nums[-1]) # returns last sketch value if user is shuffling through numbers
+                        current_input_num = current_sketched_nums[-1][0]
+                        current_row = current_sketched_nums[-1][1]
+                        current_col = current_sketched_nums[-1][2] 
+                        # board.sketch(current_input_num, current_row, current_col, USERADD_COLOR)
+                    
+                    for i in sketched_nums_before_return:
+                        c_input_num = i[0]
+                        c_row = i[1]
+                        c_col = i[2]
+                        board.sketch(c_input_num, c_row, c_col, USERADD_COLOR)
+                        print(c_input_num, c_row, c_col)
+
+
+
+                   
+                if press_return == True:
+                    sketched_nums_before_return = []
+                    press_return = False
+
+
+                    #     current_sketched_nums.append(sketched_nums)
+
+                    #     for data in current_sketched_nums:
+                    #         # print(data)
+                    #         pass
+                    # print(current_sketched_nums)
+
+                # for data in current_sketched_nums:
+                #     print(data)
+                        
+
+                        # print(values)
+                      
+                    # print(input_num, row, col)
+                # board.sketch(input_num, row, col, USERADD_COLOR)
+                        # board.sketch(data, USERADD_COLOR)
+                    # board.sketch(input_num, row, col, USERADD_COLOR)
+
+##############################################
         if event.type == pygame.KEYDOWN:
             if game_start == True:
                 if event.key in input_numbers and board.final_board[row][col] == 0: #Checks to see if space is available
                     if board.click(row, col) != None:
                         #Sketches number in
+                        board.sketch(input_num, row, col, BG_COLOR)
                         input_num = str(get_pressed_num(event.key))
                         board.sketched_nums.append([input_num, row, col])
-                        board.sketch(input_num, row, col)
+                        # print(board.sketched_nums)
+                        board.sketch(input_num, row, col, USERADD_COLOR)
+                        
                     else:
                         pass
             if event.key == pygame.K_UP:
@@ -123,12 +192,19 @@ while True:
                     col = 0
             elif event.key == pygame.K_RETURN:
                 #Fully inputs sketched numbers into board
+
+           
+                press_return = True
                 for i in board.sketched_nums:
                     board.final_board[i[1]][i[2]] = i[0]
                     board.draw()
+                    board.sketched_nums = []
+
+
                     #Check if board is filled
                     if board.is_full():
                         print(board.check_board())
+                    
                 else:
                     pass
             elif event.key == pygame.K_BACKSPACE:
@@ -137,6 +213,8 @@ while True:
                 if cell in board.empty_cells:
                     board.clear(row, col)
                     board.draw()
+                    
+
 
     pygame.display.update()
 
