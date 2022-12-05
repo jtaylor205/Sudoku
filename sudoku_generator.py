@@ -5,14 +5,6 @@ https://www.geeksforgeeks.org/program-sudoku-generator/
 
 """
 
-"""
-GITHUB LINK FOR REPOSITORY
-
-https://github.com/jtaylor205/Project4
-
-
-"""
-
 class SudokuGenerator:
     '''
 	create a sudoku board - initialize class variables and set up the 2D board
@@ -50,10 +42,7 @@ class SudokuGenerator:
 	Return: list[list]
     '''
     def get_board(self):
-        list = []
-        for i in self.board:
-            list.append(i)
-        return list
+        return self.board
 
     '''
 	Displays the board to the console
@@ -63,16 +52,12 @@ class SudokuGenerator:
 	Return: None
     '''
     def print_board(self):
-        list = []
         #print the board based on each index in each list
         for i in range(0,self.row_length):
-            part = []
             for j in range(0,self.row_length):
-                part.append(self.board[i][j])
                 print(self.board[i][j], end= "")
-            list.append(part)
             print()
-        return list
+        pass
 
     '''
 	Determines if num is contained in the specified row (horizontal) of the board
