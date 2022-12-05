@@ -83,7 +83,7 @@ while True:
                     board.sketched_nums = []
                     board.draw()
 
-                elif RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks restart
+                elif RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION) or END_RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks restart
                     print("restart the game")
                     game_start = False
                     welcome()
@@ -192,7 +192,7 @@ while True:
                             Button.check_if_hover(END_EXIT_BUTTON)
                         elif board.check_board() == False:
                              game_over()
-                             Button.check_if_hover(RESET_BUTTON)
+                             Button.check_if_hover(END_RESTART_BUTTON)
 
                 else:
                     pass
