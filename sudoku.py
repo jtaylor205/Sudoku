@@ -1,7 +1,5 @@
 from sudoku_generator import *
-from constants import *
 import pygame
-from cell import Cell
 from Button import *
 from board import Board
 from welcome import *
@@ -53,12 +51,6 @@ while True:
             Button.check_if_hover(EASY_BUTTON)
             Button.check_if_hover(MEDIUM_BUTTON)
             Button.check_if_hover(HARD_BUTTON)
-
-        else:
-            # for event, after player has chosen mode
-            Button.check_if_hover(RESET_BUTTON)
-            Button.check_if_hover(RESTART_BUTTON)
-            Button.check_if_hover(EXIT_BUTTON)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if game_start == False:

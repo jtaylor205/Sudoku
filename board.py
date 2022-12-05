@@ -2,6 +2,7 @@ import pygame
 from constants import *
 from sudoku_generator import SudokuGenerator
 from cell import Cell
+from Button import *
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 user_font = pygame.font.Font(None, USERADD_FONT)
@@ -51,7 +52,20 @@ class Board:
                     self.empty_cells.append(empty_cell)
                 new_cell = Cell(self.final_board[row][col], row, col, screen)
                 new_cell.draw()
+        #Initialize buttons at bottom of the board
+        Button.check_if_hover(RESET_BUTTON)
+        Button.check_if_hover(RESTART_BUTTON)
+        Button.check_if_hover(EXIT_BUTTON)
 
+        #Show any sketched numbers
+        for i in self.sketched_nums:
+            c_input_num = i[0]
+            c_row = i[1]
+            c_col = i[2]
+
+            self.sketch(c_input_num, c_row, c_col, BG_COLOR)
+
+            self.sketch(c_input_num, c_row, c_col, USERADD_COLOR)
                 
     def click(self, x, y):
         #Check if location is a box
@@ -85,13 +99,13 @@ class Board:
 
     def sketch(self, value, row, col, color):
         #Sketch value into the board
-
         number_surf = user_font.render(str(value), 0, color)
         number_rect = number_surf.get_rect(
             center=(CHIP_SIZE * col + CHIP_SIZE // 2 - 15, CHIP_SIZE * row + CHIP_SIZE // 2 - 15))
         self.screen.blit(number_surf, number_rect)
 
     def highlight_box(self, col, row):
+        self.draw()
         self.row = row
         self.col = col
         if row < 9:
