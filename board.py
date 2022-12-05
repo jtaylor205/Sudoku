@@ -56,6 +56,9 @@ class Board:
         Button.check_if_hover(RESET_BUTTON)
         Button.check_if_hover(RESTART_BUTTON)
         Button.check_if_hover(EXIT_BUTTON)
+        game_over()
+        Button.check_if_hover(RESET_BUTTON)
+
 
         #Show any sketched numbers
         for i in self.sketched_nums:
@@ -113,5 +116,9 @@ class Board:
         else:
             red_square = None
         return red_square
+
+
+
+
 
    
