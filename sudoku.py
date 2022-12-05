@@ -187,22 +187,15 @@ while True:
 
                     #Check if board is filled
                     if board.is_full():
-                        print(board.check_board())
-                        # this isn't working keeps throwing "Nonetype isnt subcriptable"
-                        pass
-                    #     if board.check_board() == True:
-                    #        game_over()
-                    #       
-                            # Button.check_if_hover(END_RESTART_BUTTON)
-                            # game_won()
-                            # Button.check_if_hover(END_EXIT_BUTTON)
+                        if board.check_board() == True:
+                            game_over()
+                            Button.check_if_hover(END_RESTART_BUTTON)
+                            game_won()
+                            Button.check_if_hover(END_EXIT_BUTTON)
+                        elif board.check_board() == False:
+                             game_over()
+                             Button.check_if_hover(RESET_BUTTON)
 
-
-
-                    # elif board.check_board() == False:
-                    #     game_over()
-                    #     Button.check_if_hover(RESET_BUTTON)
-                    
                 else:
                     pass
             elif event.key == pygame.K_BACKSPACE:
