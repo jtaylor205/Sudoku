@@ -31,8 +31,6 @@ def get_pressed_num(key):
     elif key == pygame.K_9:
         return 9
 
-screen.fill(BG_COLOR)
-
 # initializes welcome
 welcome()
 
@@ -52,6 +50,9 @@ while True:
             Button.check_if_hover(MEDIUM_BUTTON)
             Button.check_if_hover(HARD_BUTTON)
 
+
+            
+
         if event.type == pygame.MOUSEBUTTONDOWN:
             if game_start == False:
                 if EASY_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks easy
@@ -66,9 +67,12 @@ while True:
                     print("hard mode activated ")
                     board = Board(9, 9, screen, "hard")
 
-                board.draw()
-                game_start = True
-                first_click = True # to make sure no cell is selected after clicking game mode
+                if board ==None:
+                    continue
+                else:
+                    board.draw()
+                    game_start = True
+                    first_click = True # to make sure no cell is selected after clicking game mode
             else:
                 if RESET_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks reset
                     print("reset the game")
@@ -95,8 +99,10 @@ while True:
                 col = x // CHIP_SIZE
                
                 '''box highlight and floating numbers'''
-                board.draw()
 
+                board.draw()
+            
+               
                 Button.check_if_hover(RESET_BUTTON)
                 Button.check_if_hover(RESTART_BUTTON)
                 Button.check_if_hover(EXIT_BUTTON)
@@ -149,21 +155,25 @@ while True:
                 if row == -1:
                     cur_row = 8
                 board.highlight_box(col, row)
+                
             elif event.key == pygame.K_DOWN:
                 row += 1
                 if row == 9:
                     row = 0
                 board.highlight_box(col, row)
+                
             elif event.key == pygame.K_LEFT:
                 col -= 1
                 if col == -1:
                     col = 8
                 board.highlight_box(col, row)
+              
             elif event.key == pygame.K_RIGHT:
                 col += 1
                 if col == 9:
                     col = 0
                 board.highlight_box(col, row)
+                
             elif event.key == pygame.K_RETURN:
                 #Fully inputs sketched numbers into board
 
@@ -171,15 +181,25 @@ while True:
                 for i in board.sketched_nums:
                     board.final_board[i[1]][i[2]] = i[0]
                     board.draw()
+                    
                     board.sketched_nums = []
 
 
                     #Check if board is filled
-                    if board.is_full():
-                        print(board.check_board())
-                    # if board.check_board() == True:
-                    #     #print game over screen
-                    #     pass
+                    if board.is_full():  # this isn't working keeps throwing "Nonetype isnt subcriptable"
+                        pass
+                    #     if board.check_board() == True:
+                    #        game_over()
+                    #       
+                            # Button.check_if_hover(END_RESTART_BUTTON)
+                            # game_won()
+                            # Button.check_if_hover(END_EXIT_BUTTON)
+
+
+
+                    # elif board.check_board() == False:
+                    #     game_over()
+                    #     Button.check_if_hover(RESET_BUTTON)
                     
                 else:
                     pass

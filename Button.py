@@ -50,4 +50,11 @@ RESTART_BUTTON = Button(surface=pygame.Surface((reset_text.get_size()[0] + 55, r
 EXIT_BUTTON = Button(surface=pygame.Surface((exit_text.get_size()[0] + 12, exit_text.get_size()[1] + 20)),
                      fill_color=OPTION_COLOR, text_message="EXIT", rectangle=exit_surface.get_rect(
         center=(WIDTH // 1.22, HEIGHT // 2 + 298.7)), og_color=BG_COLOR, hover_color=(255, 25, 255))
+END_RESTART_BUTTON = Button(surface=pygame.Surface((reset_text.get_size()[0] + 55, reset_text.get_size()[1] + 30)),
+                        fill_color=OPTION_COLOR, text_message="RESTART", rectangle=reset_surface.get_rect(
+        center=(WIDTH // 2.1 -5, HEIGHT // 3 + 60)), og_color=BG_COLOR, hover_color=(255, 25, 255))
+
+END_EXIT_BUTTON = Button(surface=pygame.Surface((exit_text.get_size()[0] + 12, exit_text.get_size()[1] + 20)),
+                     fill_color=OPTION_COLOR, text_message="EXIT", rectangle=exit_surface.get_rect(
+        center=(WIDTH // 2.0 -8, HEIGHT // 3 + 60)), og_color=BG_COLOR, hover_color=(255, 25, 255))
 

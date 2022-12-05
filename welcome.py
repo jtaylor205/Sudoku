@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.init()
 button_font = pygame.font.Font(None, 40)
@@ -45,12 +46,29 @@ def welcome():
     screen.blit(select_surf, select_rect)
 
 def game_over():
+    screen.fill(BG_COLOR)
+
     end_message_font = pygame.font.Font(None, 82)
-    # Big welcome message at top
+    #
     screen.fill(BG_COLOR)
     end_surface = end_message_font.render("Game Over :(", 0, LINE_COLOR)
     end_rectangle = end_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 - 201))
-    # initializes welcome
+    #
     screen.blit(end_surface, end_rectangle)
+
+def game_won():
+    screen.fill(BG_COLOR)
+
+    end_message_font = pygame.font.Font(None, 82)
+    # 
+    screen.fill(BG_COLOR)
+    end_surface = end_message_font.render("Game Won! ", 0, LINE_COLOR)
+    end_rectangle = end_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 - 201))
+    # 
+    screen.blit(end_surface, end_rectangle)
+   
+
+
 
