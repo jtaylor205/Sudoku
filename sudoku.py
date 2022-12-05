@@ -37,7 +37,7 @@ screen.fill(BG_COLOR)
 
 # initializes welcome
 welcome()
-''' roman'''
+
 press_return = False
 sketched_nums_before_return = []
 
@@ -101,8 +101,8 @@ while True:
                 x, y = event.pos
                 row = y // CHIP_SIZE
                 col = x // CHIP_SIZE
-                ### highlights the box 
-
+             
+                """Box highlight and floating numbers""" 
                 board.draw()
 
                 Button.check_if_hover(RESET_BUTTON)
@@ -112,10 +112,10 @@ while True:
                 if first_click == False:   
                     board.highlight_box(col, row)
                 first_click = False 
-# ##################################
+
                 
                 if press_return == False:
-                
+                    
                     current_sketched_nums = []
 
                     for sketched_nums in board.sketched_nums:
@@ -125,42 +125,23 @@ while True:
                         current_input_num = current_sketched_nums[-1][0]
                         current_row = current_sketched_nums[-1][1]
                         current_col = current_sketched_nums[-1][2] 
-                        # board.sketch(current_input_num, current_row, current_col, USERADD_COLOR)
+                        
                     
                     for i in sketched_nums_before_return:
                         c_input_num = i[0]
                         c_row = i[1]
                         c_col = i[2]
-                        board.sketch(c_input_num, c_row, c_col, USERADD_COLOR)
-                        print(c_input_num, c_row, c_col)
 
+                        
+                        board.sketch(c_input_num, c_row, c_col, BG_COLOR)
+                        board.sketch(c_input_num, c_row, c_col, USERADD_COLOR)  #sketches the floating number
 
-
-                   
                 if press_return == True:
                     sketched_nums_before_return = []
                     press_return = False
 
 
-                    #     current_sketched_nums.append(sketched_nums)
-
-                    #     for data in current_sketched_nums:
-                    #         # print(data)
-                    #         pass
-                    # print(current_sketched_nums)
-
-                # for data in current_sketched_nums:
-                #     print(data)
-                        
-
-                        # print(values)
-                      
-                    # print(input_num, row, col)
-                # board.sketch(input_num, row, col, USERADD_COLOR)
-                        # board.sketch(data, USERADD_COLOR)
-                    # board.sketch(input_num, row, col, USERADD_COLOR)
-
-##############################################
+               
         if event.type == pygame.KEYDOWN:
             if game_start == True:
                 if event.key in input_numbers and board.final_board[row][col] == 0: #Checks to see if space is available
