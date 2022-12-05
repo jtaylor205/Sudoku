@@ -17,7 +17,7 @@ class Board:
         self.empty_cells = []
         self.sketched_nums = []
         if self.difficulty == "easy":
-            self.sudo = SudokuGenerator(9, 30)
+            self.sudo = SudokuGenerator(9, 1)
             pass
         elif self.difficulty == "medium":
             self.sudo = SudokuGenerator(9, 40)

@@ -186,7 +186,9 @@ while True:
 
 
                     #Check if board is filled
-                    if board.is_full():  # this isn't working keeps throwing "Nonetype isnt subcriptable"
+                    if board.is_full():
+                        print(board.check_board())
+                        # this isn't working keeps throwing "Nonetype isnt subcriptable"
                         pass
                     #     if board.check_board() == True:
                     #        game_over()
