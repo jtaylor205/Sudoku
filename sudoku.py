@@ -188,8 +188,6 @@ while True:
                     #Check if board is filled
                     if board.is_full():
                         if board.check_board() == True:
-                            game_over()
-                            Button.check_if_hover(END_RESTART_BUTTON)
                             game_won()
                             Button.check_if_hover(END_EXIT_BUTTON)
                         elif board.check_board() == False:
