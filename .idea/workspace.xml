@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="83c61e72-b612-4b48-90e0-aac15b2c1277" name="Changes" comment="j">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/welcome.py" beforeDir="false" afterPath="$PROJECT_DIR$/welcome.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +77,8 @@
       <workItem from="1669841715113" duration="35000" />
       <workItem from="1669841757533" duration="409000" />
       <workItem from="1669842296901" duration="220000" />
+      <workItem from="1670205563310" duration="483000" />
+      <workItem from="1670207937693" duration="781000" />
     </task>
     <task id="LOCAL-00001" summary="j">
       <created>1669841846216</created>
@@ -187,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670205114386</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="j">
+      <created>1670206755650</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1670206755650</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +244,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="j" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/sudoku_py$sudoku.coverage" NAME="sudoku Coverage Results" MODIFIED="1670208582824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Project4$sudoku.coverage" NAME="sudoku Coverage Results" MODIFIED="1670037483949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

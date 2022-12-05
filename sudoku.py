@@ -101,6 +101,7 @@ while True:
                 Button.check_if_hover(RESTART_BUTTON)
                 Button.check_if_hover(EXIT_BUTTON)
 
+
                 if first_click == False:   
                     board.highlight_box(col, row)
                 first_click = False
@@ -123,7 +124,6 @@ while True:
                         c_col = i[2]
 
                         board.sketch(c_input_num, c_row, c_col, BG_COLOR)
-
                         board.sketch(c_input_num, c_row, c_col, USERADD_COLOR)
  
                 if press_return == True:
@@ -189,6 +189,10 @@ while True:
                 if cell in board.empty_cells:
                     board.clear(row, col)
                     board.draw()
+
+
+
+
                     
 
 
