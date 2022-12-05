@@ -44,9 +44,8 @@ sketched_nums_before_return = []
 game_start = False
 input_numbers = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
 while True:
-    MOUSE_POSITION = pygame.mouse.get_pos()  # I need to organize this better
-    for event in pygame.event.get():  # Every time you click on a sudoku square, the options disappear. Think it has something to do with loop
-
+    MOUSE_POSITION = pygame.mouse.get_pos()
+    for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
 
@@ -62,40 +61,31 @@ while True:
             Button.check_if_hover(EXIT_BUTTON)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-
             if game_start == False:
                 if EASY_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks easy
                     print("easy mode activated ")
                     board = Board(9, 9, screen, "easy")
-                    current_difficulty = "easy"
-                    board.draw()
-                    game_start = True
 
                 elif MEDIUM_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks medium
                     print("medium mode activated ")
                     board = Board(9, 9, screen, "medium")
-                    current_difficulty = "medium"
-                    board.draw()
-                    game_start = True
 
                 elif HARD_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks hard
                     print("hard mode activated ")
                     board = Board(9, 9, screen, "hard")
-<<<<<<< HEAD
 
                 board.draw()
                 game_start = True
                 first_click = True # to make sure no cell is selected after clicking game mode
-=======
-                    current_difficulty = "hard"
-                    board.draw()
-                    game_start = True
->>>>>>> 37dc82593b2fe0f79570ef37590f1fc93a17b238
             else:
                 if RESET_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks reset
-                    board = Board(9, 9, screen, current_difficulty)
+                    print("reset the game")
+                    for i in board.empty_cells:
+                        row = i[0]
+                        col = i[1]
+                        board.clear(row, col)
+                    board.sketched_nums = []
                     board.draw()
-                    
 
                 elif RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks restart
                     print("restart the game")
@@ -111,11 +101,8 @@ while True:
                 x, y = event.pos
                 row = y // CHIP_SIZE
                 col = x // CHIP_SIZE
-<<<<<<< HEAD
-                ### highlights the box 
-
-             
-                """Box highlight and floating numbers""" 
+               
+                '''box highlight and floating numbers'''
                 board.draw()
 
                 Button.check_if_hover(RESET_BUTTON)
@@ -126,9 +113,8 @@ while True:
                     board.highlight_box(col, row)
                 first_click = False 
 
-                
                 if press_return == False:
-                    
+                
                     current_sketched_nums = []
 
                     for sketched_nums in board.sketched_nums:
@@ -138,29 +124,25 @@ while True:
                         current_input_num = current_sketched_nums[-1][0]
                         current_row = current_sketched_nums[-1][1]
                         current_col = current_sketched_nums[-1][2] 
-                        
                     
                     for i in sketched_nums_before_return:
                         c_input_num = i[0]
                         c_row = i[1]
                         c_col = i[2]
 
-                        
                         board.sketch(c_input_num, c_row, c_col, BG_COLOR)
-                        board.sketch(c_input_num, c_row, c_col, USERADD_COLOR)  #sketches the floating number
 
+                        board.sketch(c_input_num, c_row, c_col, USERADD_COLOR)
+ 
                 if press_return == True:
                     sketched_nums_before_return = []
                     press_return = False
 
 
-               
         if event.type == pygame.KEYDOWN:
-
             if game_start == True:
-                if event.key in input_numbers and board.final_board[row][col] == 0:
+                if event.key in input_numbers and board.final_board[row][col] == 0: #Checks to see if space is available
                     if board.click(row, col) != None:
-<<<<<<< HEAD
                         #Sketches number in
                         board.sketch(input_num, row, col, BG_COLOR)
                         input_num = str(get_pressed_num(event.key))
@@ -168,16 +150,12 @@ while True:
                         # print(board.sketched_nums)
                         board.sketch(input_num, row, col, USERADD_COLOR)
                         
-=======
-                        input_num = str(get_pressed_num(event.key))
->>>>>>> 37dc82593b2fe0f79570ef37590f1fc93a17b238
                     else:
                         pass
             if event.key == pygame.K_UP:
                 row -= 1
                 if row == -1:
                     cur_row = 8
-                print(row)
             elif event.key == pygame.K_DOWN:
                 row += 1
                 if row == 9:
@@ -191,7 +169,6 @@ while True:
                 if col == 9:
                     col = 0
             elif event.key == pygame.K_RETURN:
-<<<<<<< HEAD
                 #Fully inputs sketched numbers into board
 
            
@@ -216,17 +193,6 @@ while True:
                     board.draw()
                     
 
-=======
-                if board.final_board[row][col] == 0:
-                    num = Cell(input_num, row, col, screen)
-                    num.draw()
-                    board.final_board[row][col] = input_num
-                    print(board.final_board[row][col])
-                    input_num = 0
-                    print(board.is_full())
-                else:
-                    pass
->>>>>>> 37dc82593b2fe0f79570ef37590f1fc93a17b238
 
     pygame.display.update()
 
