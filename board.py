@@ -94,7 +94,6 @@ class Board:
     def highlight_box(self, col, row):
         self.row = row
         self.col = col
-        
         if row < 9:
             red_square = pygame.draw.rect(screen, (255,0,0), ((col * 67) - 1.25, (row * 67) -0.1, 68, 66.5), 3)
         else:

@@ -111,7 +111,7 @@ while True:
 
                 if first_click == False:   
                     board.highlight_box(col, row)
-                first_click = False 
+                first_click = False
 
                 if press_return == False:
                 
@@ -156,22 +156,25 @@ while True:
                 row -= 1
                 if row == -1:
                     cur_row = 8
+                board.highlight_box(col, row)
             elif event.key == pygame.K_DOWN:
                 row += 1
                 if row == 9:
                     row = 0
+                board.highlight_box(col, row)
             elif event.key == pygame.K_LEFT:
                 col -= 1
                 if col == -1:
                     col = 8
+                board.highlight_box(col, row)
             elif event.key == pygame.K_RIGHT:
                 col += 1
                 if col == 9:
                     col = 0
+                board.highlight_box(col, row)
             elif event.key == pygame.K_RETURN:
                 #Fully inputs sketched numbers into board
 
-           
                 press_return = True
                 for i in board.sketched_nums:
                     board.final_board[i[1]][i[2]] = i[0]
