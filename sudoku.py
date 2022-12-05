@@ -88,7 +88,7 @@ while True:
                     game_start = False
                     welcome()
                     # takes back to menu screen
-                elif EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks exit
+                elif EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION) or END_EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks exit
                     pygame.quit()
 
             if game_start == True:
