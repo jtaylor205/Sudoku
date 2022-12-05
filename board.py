@@ -113,5 +113,5 @@ class Board:
         else:
             red_square = None
         return red_square
-
+    
    

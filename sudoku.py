@@ -177,6 +177,9 @@ while True:
                     #Check if board is filled
                     if board.is_full():
                         print(board.check_board())
+                    # if board.check_board() == True:
+                    #     #print game over screen
+                    #     pass
                     
                 else:
                     pass
