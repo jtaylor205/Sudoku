@@ -6,6 +6,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 button_font = pygame.font.Font(None, 40)
 class Button():
     def __init__(self, surface, fill_color, text_message, rectangle, og_color, hover_color):
+        #initialize class
         self.surface = surface
         self.fill_color = fill_color
         self.text_message = text_message
@@ -14,12 +15,14 @@ class Button():
         self.hover_color = hover_color
 
     def display(self):
+        #Display button
         self.text = button_font.render(self.text_message, 0, self.og_color)
         self.surface.fill(self.fill_color)
         self.surface.blit(self.text, (10, 10))
         screen.blit(self.surface, self.rectangle)
 
     def check_if_hover(self):
+        #See if mouse is over the button
         MOUSE_POSITION = pygame.mouse.get_pos()
 
         if self.rectangle.collidepoint(MOUSE_POSITION):

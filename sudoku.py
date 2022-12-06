@@ -12,6 +12,7 @@ input_num = 0
 user_font = pygame.font.Font(None, USERADD_FONT)
 
 def get_pressed_num(key):
+    #Find out which key the user pressed
     if key == pygame.K_1:
         return 1
     elif key == pygame.K_2:
@@ -40,12 +41,14 @@ sketched_nums_before_return = []
 game_start = False
 input_numbers = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9]
 while True:
+    #Get position of the mouse
     MOUSE_POSITION = pygame.mouse.get_pos()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
 
         elif game_start == False:
+            #Check if mouse is hovering over the buttons and initialize them
             Button.check_if_hover(EASY_BUTTON)
             Button.check_if_hover(MEDIUM_BUTTON)
             Button.check_if_hover(HARD_BUTTON)
@@ -55,6 +58,7 @@ while True:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if game_start == False:
+                #Depending on the mode chosen, form a board
                 if EASY_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks easy
                     print("easy mode activated ")
                     board = Board(9, 9, screen, "easy")
@@ -83,12 +87,12 @@ while True:
                     board.sketched_nums = []
                     board.draw()
 
-                elif RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION) or END_RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks restart
+                elif RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION) or END_RESTART_BUTTON.rectangle.collidepoint(MOUSE_POSITION) and board.is_full() and board.check_board() == False:  # player clicks restart
                     print("restart the game")
                     game_start = False
                     welcome()
                     # takes back to menu screen
-                elif EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION) or END_EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION):  # player clicks exit
+                elif EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION) or END_EXIT_BUTTON.rectangle.collidepoint(MOUSE_POSITION) and board.is_full():  # player clicks exit
                     pygame.quit()
 
             if game_start == True:
@@ -102,13 +106,14 @@ while True:
 
                 board.draw()
             
-               
+               #Buttons below sudoku screen
                 Button.check_if_hover(RESET_BUTTON)
                 Button.check_if_hover(RESTART_BUTTON)
                 Button.check_if_hover(EXIT_BUTTON)
 
 
-                if first_click == False:   
+                if first_click == False:
+                    #Highligh selected box
                     board.highlight_box(col, row)
                 first_click = False
 
@@ -117,6 +122,7 @@ while True:
                     current_sketched_nums = []
 
                     for sketched_nums in board.sketched_nums:
+                        #Add to array of sketched nums so the numbers are not officially written in board
                         current_sketched_nums.append(sketched_nums)
                     if current_sketched_nums != []:
                         sketched_nums_before_return.append(current_sketched_nums[-1]) # returns last sketch value if user is shuffling through numbers
@@ -150,6 +156,7 @@ while True:
                         
                     else:
                         pass
+            #Based on event key, move the highlighted box
             if event.key == pygame.K_UP:
                 row -= 1
                 if row == -1:
@@ -202,10 +209,6 @@ while True:
                 if cell in board.empty_cells:
                     board.clear(row, col)
                     board.draw()
-
-
-
-
                     
 
 

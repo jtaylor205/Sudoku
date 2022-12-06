@@ -1,6 +1,5 @@
 import pygame
 from constants import *
-
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.init()
 button_font = pygame.font.Font(None, 40)
@@ -49,7 +48,7 @@ def game_over():
     screen.fill(BG_COLOR)
 
     end_message_font = pygame.font.Font(None, 82)
-    #
+    #present game lost message
     screen.fill(BG_COLOR)
     end_surface = end_message_font.render("Game Over :(", 0, LINE_COLOR)
     end_rectangle = end_surface.get_rect(
@@ -57,17 +56,18 @@ def game_over():
     #
     screen.blit(end_surface, end_rectangle)
 
+
 def game_won():
     screen.fill(BG_COLOR)
 
     end_message_font = pygame.font.Font(None, 82)
-    # 
+    #present game won message
     screen.fill(BG_COLOR)
     end_surface = end_message_font.render("Game Won! ", 0, LINE_COLOR)
     end_rectangle = end_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 - 201))
-    # 
     screen.blit(end_surface, end_rectangle)
+
    
 
 

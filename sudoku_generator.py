@@ -236,7 +236,7 @@ class SudokuGenerator:
             cell = random.randint(0, math.pow(self.row_length, 2)) - 1
             cella = int(cell/self.row_length)
             cellb = int(cell % 9)
-            if not cellb == 0:
+            if not self.board[cella][cellb] == 0:
                 cellb -= 1
             if not self.board[cella][cellb] == 0:
                 num -= 1

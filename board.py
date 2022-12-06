@@ -97,6 +97,7 @@ class Board:
         return True
 
     def clear(self, row, col):
+        #Clear inserted value
         self.final_board[row][col] = 0
 
     def sketch(self, value, row, col, color):
@@ -108,7 +109,7 @@ class Board:
 
     def highlight_box(self, col, row):
         self.draw()
-        
+        #Highlight the box
         if row < 9 and col < 9:
             red_square = pygame.draw.rect(screen, (255,0,0), ((col * 67) - 1.25, (row * 67) -0.1, 68, 66.5), 3)
         else:
